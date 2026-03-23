@@ -16,7 +16,7 @@
 </head>
 
 <body>
-	<div id="wrapper">
+	<div id="wrapper" style="opacity:0">
 		<header id="header">
 			<div class="logo">
 				<img src="images/author_image.png" class="logo">
@@ -125,6 +125,10 @@
 	<script src="js/util.js" defer></script>
 	<script src="js/main.js" defer></script>
 	<script type="text/javascript">
+		// jQuery 加载完成后淡入显示内容
+		$(document).ready(function() {
+			$('#wrapper').css({ transition: 'opacity 0.5s ease', opacity: '1' });
+		});
 		// 禁用右键菜单,只允许在文本框内使用
 		document.oncontextmenu = function (t) {
 			window.event && (t = window.event);
