@@ -1,4 +1,4 @@
-﻿@import url(https://s4.zstatic.net/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css);
+﻿@import url(https://s4.zstatic.net/ajax/libs/font-awesome/6.7.2/css/all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300italic,600italic,300,600");
 /*
 	Dimension by HTML5 UP
@@ -326,9 +326,9 @@
 		.select-wrapper:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+			font-family: 'Font Awesome 6 Free';
 			font-style: normal;
-			font-weight: normal;
+			font-weight: 900;
 			text-transform: none !important;
 		}
 		.select-wrapper:before {
@@ -390,9 +390,9 @@
 			input[type="radio"] + label:before {
 				-moz-osx-font-smoothing: grayscale;
 				-webkit-font-smoothing: antialiased;
-				font-family: FontAwesome;
+				font-family: 'Font Awesome 6 Free';
 				font-style: normal;
-				font-weight: normal;
+				font-weight: 900;
 				text-transform: none !important;
 			}
 			input[type="checkbox"] + label:before,
@@ -478,9 +478,9 @@
 		.icon:before {
 			-moz-osx-font-smoothing: grayscale;
 			-webkit-font-smoothing: antialiased;
-			font-family: FontAwesome;
+			font-family: inherit;
 			font-style: normal;
-			font-weight: normal;
+			font-weight: inherit;
 			text-transform: none !important;
 		}
 		.icon > .label {
