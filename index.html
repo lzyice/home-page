@@ -121,63 +121,27 @@
 	</div>
 	<!-- 将非关键脚本改为延迟加载 -->
 	<script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
-	<script src="js/util.js" defer></script>
 	<script src="js/main.js" defer></script>
 	<script type="text/javascript">
 		// jQuery 加载完成后淡入显示内容
-		$(document).ready(function() {
+		$(function() {
 			$('#wrapper').css({ transition: 'opacity 0.5s ease', opacity: '1' });
 		});
+		// 判断事件目标是否为可编辑的文本框
+		function isTextInput(e) {
+			var el = e.target;
+			return (el.tagName === "INPUT" && el.type.toLowerCase() === "text") || el.tagName === "TEXTAREA";
+		}
 		// 禁用右键菜单,只允许在文本框内使用
-		document.oncontextmenu = function (t) {
-			window.event && (t = window.event);
-			try {
-				var e = t.srcElement;
-				return "INPUT" == e.tagName && "text" == e.type.toLowerCase() || "TEXTAREA" == e.tagName ? !0 : !1
-			} catch (n) {
-				return !1
-			}
-		},
-			// 禁用粘贴功能,只允许在文本框内使用
-			document.onpaste = function (t) {
-				window.event && (t = window.event);
-				try {
-					var e = t.srcElement;
-					return "INPUT" == e.tagName && "text" == e.type.toLowerCase() || "TEXTAREA" == e.tagName ? !0 : !1
-				} catch (n) {
-					return !1
-				}
-			},
-			// 禁用复制功能,只允许在文本框内使用
-			document.oncopy = function (t) {
-				window.event && (t = window.event);
-				try {
-					var e = t.srcElement;
-					return "INPUT" == e.tagName && "text" == e.type.toLowerCase() || "TEXTAREA" == e.tagName ? !0 : !1
-				} catch (n) {
-					return !1
-				}
-			},
-			// 禁用剪切功能,只允许在文本框内使用
-			document.oncut = function (t) {
-				window.event && (t = window.event);
-				try {
-					var e = t.srcElement;
-					return "INPUT" == e.tagName && "text" == e.type.toLowerCase() || "TEXTAREA" == e.tagName ? !0 : !1
-				} catch (n) {
-					return !1
-				}
-			},
-			// 禁用文本选择功能,只允许在文本框内使用
-			document.onselectstart = function (t) {
-				window.event && (t = window.event);
-				try {
-					var e = t.srcElement;
-					return "INPUT" == e.tagName && "text" == e.type.toLowerCase() || "TEXTAREA" == e.tagName ? !0 : !1
-				} catch (n) {
-					return !1
-				}
-			};
+		document.oncontextmenu = function (e) { return isTextInput(e); };
+		// 禁用粘贴功能,只允许在文本框内使用
+		document.onpaste = function (e) { return isTextInput(e); };
+		// 禁用复制功能,只允许在文本框内使用
+		document.oncopy = function (e) { return isTextInput(e); };
+		// 禁用剪切功能,只允许在文本框内使用
+		document.oncut = function (e) { return isTextInput(e); };
+		// 禁用文本选择功能,只允许在文本框内使用
+		document.onselectstart = function (e) { return isTextInput(e); };
 	</script>
 </body>
 </html>

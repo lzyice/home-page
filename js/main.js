@@ -19,14 +19,18 @@
 		// Disable animations/transitions until the page has loaded.
 			$body.addClass('is-loading');
 
-			$window.on('load', function() {
+			if (document.readyState === 'complete') {
+				// load already fired, remove immediately
 				window.setTimeout(function() {
 					$body.removeClass('is-loading');
 				}, 100);
-			});
-
-		// Fix: Placeholder polyfill.
-			$('form').placeholder();
+			} else {
+				$window.on('load', function() {
+					window.setTimeout(function() {
+						$body.removeClass('is-loading');
+					}, 100);
+				});
+			}
 
 		// Nav.
 			var $nav = $header.children('nav'),
@@ -56,7 +60,7 @@
 					// Handle lock.
 
 						// Already locked? Speed through "show" steps w/o delays.
-							if (locked || (typeof initial != 'undefined' && initial === true)) {
+							if (locked || initial === true) {
 
 								// Mark as switching.
 									$body.addClass('is-switching');
@@ -177,8 +181,7 @@
 							return;
 
 					// Add state?
-						if (typeof addState != 'undefined'
-						&&	addState === true)
+						if (addState === true)
 							history.pushState(null, null, '#');
 
 					// Handle lock.
@@ -283,18 +286,11 @@
 
 				$window.on('keyup', function(event) {
 
-					switch (event.keyCode) {
+					if (event.key === 'Escape') {
 
-						case 27:
-
-							// Article visible? Hide.
-								if ($body.hasClass('is-article-visible'))
-									$main._hide(true);
-
-							break;
-
-						default:
-							break;
+						// Article visible? Hide.
+							if ($body.hasClass('is-article-visible'))
+								$main._hide(true);
 
 					}
 
@@ -323,7 +319,7 @@
 								event.stopPropagation();
 
 							// Show article.
-								$main._show(location.hash.substr(1));
+								$main._show(location.hash.substring(1));
 
 						}
 
@@ -331,26 +327,7 @@
 
 			// Scroll restoration.
 			// This prevents the page from scrolling back to the top on a hashchange.
-				if ('scrollRestoration' in history)
-					history.scrollRestoration = 'manual';
-				else {
-
-					var	oldScrollPos = 0,
-						scrollPos = 0,
-						$htmlbody = $('html,body');
-
-					$window
-						.on('scroll', function() {
-
-							oldScrollPos = scrollPos;
-							scrollPos = $htmlbody.scrollTop();
-
-						})
-						.on('hashchange', function() {
-							$window.scrollTop(oldScrollPos);
-						});
-
-				}
+				history.scrollRestoration = 'manual';
 
 			// Initialize.
 
@@ -362,7 +339,7 @@
 					if (location.hash != ''
 					&&	location.hash != '#')
 						$window.on('load', function() {
-							$main._show(location.hash.substr(1), true);
+							$main._show(location.hash.substring(1), true);
 						});
 
 	});
