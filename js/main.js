@@ -17,7 +17,7 @@
 			$main_articles = $main.children('article');
 
 		// Disable animations/transitions until the page has loaded.
-			$body.addClass('is-loading');
+			// 'is-loading' is pre-set on <body> in HTML to prevent background flash.
 
 			if (document.readyState === 'complete') {
 				// load already fired, remove immediately
