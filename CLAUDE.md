@@ -51,7 +51,7 @@ URL hash 直接映射到文章 ID：`#about` → `<article id="about">`。`hashc
 - **个人信息**：`index.html` 中 `<article id="about">` 内
 - **导航链接**：`index.html` 中 `<nav>` 的 `<ul>` 内；外链加 `target="_blank"`，内部模态框用 `href="#id"`
 - **背景图片**：替换 `images/bg.jpg`
-- **样式**：`css/main.css`（IE9 兼容样式在 `css/ie9.css`）
+- **样式**：`css/main.css`
 
 ## 内容保护
 
