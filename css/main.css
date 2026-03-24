@@ -898,7 +898,16 @@
 			line-height: 5.5rem;
 			border: solid 1px #ffffff;
 			border-radius: 100%;
+			overflow: hidden;
 		}
+			#header .logo img {
+				display: block;
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+				border: none;
+				border-radius: 0;
+			}
 			#header .logo .icon:before {
 				font-size: 2rem;
 			}
